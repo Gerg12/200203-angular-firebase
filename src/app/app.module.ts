@@ -14,9 +14,11 @@ import { environment } from "src/environments/environment";
 //angularfire imports
 import { AngularFireModule } from "@angular/fire";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
+import { LessonListComponent } from './lesson-list/lesson-list.component';
+import { LessonsComponent } from './lessons/lessons.component';
 
 @NgModule({
-  declarations: [AppComponent, OrdersComponent, OrderListComponent],
+  declarations: [AppComponent, OrdersComponent, OrderListComponent, LessonListComponent, LessonsComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
