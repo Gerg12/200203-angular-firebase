@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import { LessonsService } from "../shared/lessons.service";
+import { Lesson }    from '../interfaces/lesson';
 
 @Component({
   selector: 'app-lessons',
@@ -9,35 +10,39 @@ import { LessonsService } from "../shared/lessons.service";
 })
 export class LessonsComponent implements OnInit {
 
-  constructor(private lessonsService: LessonsService) {}
+  constructor(public lessonsService: LessonsService) {}
 
   ngOnInit() {
   }
 
+  public lessonView = new Lesson( 'Lesson Title', 'general', 'easy');
+
+  get diagnostic() { return JSON.stringify(this.lessonView); }
+
   categories = [
-    "Americano",
-    "Flat White",
-    "Cappuccino",
-    "Latte",
-    "Espresso",
-    "Machiato",
-    "Mocha",
-    "Hot Chocolate",
-    "Tea"
+    "general",
+    "html-css"
+  ];
+  difficulties = [
+    "easy",
+    "medium",
+    "hard"
   ];
 
-  lesson = [];
+  singleLesson = [];
 
-  addCoffee = coffee => this.lesson.push(coffee);
+  addLesson = lesson => this.singleLesson.push(lesson);
 
-  removeCoffee = coffee => {
-    let index = this.lesson.indexOf(coffee);
-    if (index > -1) this.lesson.splice(index, 1);
+  removeLesson = lesson => {
+    let index = this.singleLesson.indexOf(lesson);
+    if (index > -1) this.singleLesson.splice(index, 1);
   };
 
   onSubmit() {
-    this.lessonsService.form.value.lesson = this.lesson;
+    this.lessonsService.form.value.lesson = this.singleLesson;
     let data = this.lessonsService.form.value;
+
+    console.log(data);
 
     this.lessonsService.createLesson(data).then(res => {
       /*do something here....maybe clear the form or give a success message*/

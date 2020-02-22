@@ -5,7 +5,18 @@
     formControlName="lessonTitle"
     type="text"
     class="input-field col s12"
+    [(ngModel)]="lessonView.title"
   />
+  <select class="form-control"  id="category"
+          required
+          [(ngModel)]="lessonView.category" formControlName="lessonCategory">
+    <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+  </select>
+  <select class="form-control"  id="difficulty"
+          required
+          [(ngModel)]="lessonView.difficulty" formControlName="lessonDifficulty">
+    <option *ngFor="let difficulty of difficulties" [value]="difficulty">{{difficulty}}</option>
+  </select>
 
   <!-- <input
     class="input-field col s12"
@@ -16,20 +27,35 @@
 
   <!-- <button
     class="waves-effect waves-light btn col s4"
-    *ngFor="let coffee of categories"
-    (click)="addCoffee(coffee)"
+    (click)="addLesson()"
   >
-    {{ coffee }}
+    Add Lesson
   </button>
 
   <ul class="collection">
-    <li *ngFor="let coffee of coffeeOrder">
-      <span class="col s11"> {{ coffee }} </span
-      ><a class="col s1" (click)="removeCoffee(coffee)">x</a>
+    <li *ngFor="let lesson of singleLesson">
+      <span class="col s11"> {{ singleLesson }} </span
+      ><a class="col s1" (click)="removeLesson(lesson)">x</a>
     </li>
   </ul> -->
+
+  <button
+    class="waves-effect waves-light btn col s4"
+    *ngFor="let lesson of categories"
+    (click)="addLesson(lesson)"
+  >
+    {{ lesson }}
+  </button>
+
+  <ul class="collection">
+    <li *ngFor="let lesson of singleLesson">
+      <span class="col s11"> {{ singleLesson }} </span
+      ><a class="col s1" (click)="removeLesson(lesson)">x</a>
+    </li>
+  </ul>
 
   <button class="waves-effect waves-light btn col s12" (click)="onSubmit()">
     Submit
   </button>
+  {{diagnostic}}
 </form>

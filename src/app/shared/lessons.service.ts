@@ -10,7 +10,10 @@ export class LessonsService {
   constructor(private firestore: AngularFirestore) { }
 
   form = new FormGroup({
-    lessonTitle: new FormControl("")
+    lessonTitle: new FormControl(""),
+    lessonCategory: new FormControl(""),
+    lessonDifficulty: new FormControl(""),
+    completed: new FormControl(false)
   });
 
   //Firestore CRUD actions example
